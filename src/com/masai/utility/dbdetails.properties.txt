@@ -1,0 +1,4 @@
+db.url=jdbc:mysql://localhost:3306/shivendradb
+db.drivername=com.mysql.cj.jdbc.Driver
+db.username=root
+db.password=Kumar@0852
