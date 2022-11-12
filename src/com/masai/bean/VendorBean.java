@@ -8,22 +8,29 @@ public class VendorBean {
 	private String name;
 	private String email;
 	private String address;
-	private String company;
 	
-	public VendorBean(String id, String name, String email, String address, String company, String password) {
+	public VendorBean() {
+		super();
+	}
+	public VendorBean(String id, String password, String name, String email, String address) {
 		super();
 		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.email = email;
 		this.address = address;
-		this.company = company;
 	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getName() {
 		return name;
@@ -43,29 +50,16 @@ public class VendorBean {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getCompany() {
-		return company;
-	}
-	public void setCompany(String company) {
-		this.company = company;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	@Override
 	public String toString() {
-		return "VendorBean [id=" + id + ", name=" + name + ", email=" + email + ", address=" + address + ", company="
-				+ company + ", password=" + password + ", getId()=" + getId() + ", getName()=" + getName()
-				+ ", getEmail()=" + getEmail() + ", getAddress()=" + getAddress() + ", getCompany()=" + getCompany()
-				+ ", getPassword()=" + getPassword() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "VendorBean [id=" + id + ", password=" + password + ", name=" + name + ", email=" + email + ", address="
+				+ address + ", getId()=" + getId() + ", getPassword()=" + getPassword() + ", getName()=" + getName()
+				+ ", getEmail()=" + getEmail() + ", getAddress()=" + getAddress() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, company, email, id, name, password);
+		return Objects.hash(address, email, id, name, password);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -76,9 +70,9 @@ public class VendorBean {
 		if (getClass() != obj.getClass())
 			return false;
 		VendorBean other = (VendorBean) obj;
-		return Objects.equals(address, other.address) && Objects.equals(company, other.company)
-				&& Objects.equals(email, other.email) && Objects.equals(id, other.id)
-				&& Objects.equals(name, other.name) && Objects.equals(password, other.password);
+		return Objects.equals(address, other.address) && Objects.equals(email, other.email)
+				&& Objects.equals(id, other.id) && Objects.equals(name, other.name)
+				&& Objects.equals(password, other.password);
 	}
 	
 	
