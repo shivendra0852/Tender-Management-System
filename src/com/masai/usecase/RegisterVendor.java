@@ -5,7 +5,7 @@ import java.util.*;
 import com.masai.dao.*;
 import com.masai.exception.VendorException;
 
-public class registerVendor {
+public class RegisterVendor {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter a id here:-");
@@ -25,7 +25,7 @@ public class registerVendor {
 			String result = dao.registerVendor(id, password, name, email, address);
 			System.out.println(result);
 		} catch (VendorException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 }

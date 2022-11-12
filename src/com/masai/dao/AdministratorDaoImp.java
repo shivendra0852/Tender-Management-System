@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.masai.bean.AdministratorBean;
+import com.masai.bean.BidderBean;
+import com.masai.bean.TenderBean;
 import com.masai.bean.VendorBean;
 import com.masai.exception.AdministratorException;
+import com.masai.exception.BidderException;
+import com.masai.exception.TenderException;
 import com.masai.exception.VendorException;
 import com.masai.utility.DBUtil;
 
@@ -59,9 +63,6 @@ public class AdministratorDaoImp implements AdministratorDao{
 	
 	
 	
-	
-	
-	
 	@Override
 	public String registerVendor(String id, String password, String name, String email, String address) throws VendorException {
 		String result = "Insertion failed!";
@@ -90,10 +91,6 @@ public class AdministratorDaoImp implements AdministratorDao{
 		}
 		return result;
 	}
-
-
-
-
 
 
 
@@ -142,13 +139,119 @@ public class AdministratorDaoImp implements AdministratorDao{
 
 
 
+	@Override
+	public String createTender(String id, String name, String type, int price, String location, Date deadline) throws TenderException {
+		
+		String result = "Tender creation failed";
+		
+		try(Connection conn = DBUtil.provideConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("insert into tender values(?,?,?,?,?,?)");
+			
+			ps.setString(1, id);
+			ps.setString(2, name);
+			ps.setString(3, type);
+			ps.setInt(4, price);
+			ps.setString(5, location);
+			ps.setDate(5, deadline);
+			
+			int x = ps.executeUpdate();
+			if(x>0) {
+				result = "Tender created successfully.";
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new TenderException(e.getMessage());
+		}
+		
+		
+		return result;
+	}
+
+
+
+
+
 
 
 
 	@Override
-	public String createTender(String id, String name, String type, int price, String location, Date deadline) {
+	public List<TenderBean> viewAllTender() throws TenderException {
+    List<TenderBean> tenders = new ArrayList<>();
 		
-		return null;
+		try(Connection conn = DBUtil.provideConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("select * from tender");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				String i = rs.getString("tid");
+				String n = rs.getString("tname");
+				String t = rs.getString("ttype");
+				int p = rs.getInt("tprice");
+				String l = rs.getString("tlocation");
+				Date d = rs.getDate("tdeadline");
+				
+				tenders.add(new TenderBean(i,n,t,p,l,d));
+			}
+			
+			if(tenders.size()==0) {
+				throw new TenderException("No vendor found!");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new TenderException(e.getMessage());
+		}
+		
+		
+		return tenders;
 	}
 
+
+
+
+
+
+
+
+	@Override
+	public List<BidderBean> viewAllBidsOfTender(String tid) throws BidderException {
+		List<BidderBean> bidders = new ArrayList<>();
+		
+		try(Connection conn = DBUtil.provideConnection()){
+			
+			PreparedStatement ps =  conn.prepareStatement("select * from bidder where tid=?");
+			
+			ps.setString(1, tid);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				String i = rs.getString("bid");
+				String vi = rs.getString("vid");
+				String ti = rs.getString("tid");
+			    int p = rs.getInt("bprice");
+				Date d = rs.getDate("bdeadline");
+				String s = rs.getString("bstatus");
+				
+				bidders.add(new BidderBean(i,vi,ti,p,d,s));
+			}
+			
+			if(bidders.size()==0) {
+				throw new BidderException("No bidders found!");
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new BidderException(e.getMessage());
+		}
+		
+		return bidders;
+	}
+	
 }
