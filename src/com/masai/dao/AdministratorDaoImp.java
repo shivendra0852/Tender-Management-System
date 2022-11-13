@@ -140,20 +140,19 @@ public class AdministratorDaoImp implements AdministratorDao{
 
 
 	@Override
-	public String createTender(String id, String name, String type, int price, String location, Date deadline) throws TenderException {
+	public String createTender(String id, String name, String type, int price, String location) throws TenderException {
 		
 		String result = "Tender creation failed";
 		
 		try(Connection conn = DBUtil.provideConnection()){
 			
-			PreparedStatement ps = conn.prepareStatement("insert into tender values(?,?,?,?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("insert into tender values(?,?,?,?,?)");
 			
 			ps.setString(1, id);
 			ps.setString(2, name);
 			ps.setString(3, type);
 			ps.setInt(4, price);
 			ps.setString(5, location);
-			ps.setDate(5, deadline);
 			
 			int x = ps.executeUpdate();
 			if(x>0) {
@@ -179,6 +178,7 @@ public class AdministratorDaoImp implements AdministratorDao{
 
 	@Override
 	public List<TenderBean> viewAllTender() throws TenderException {
+		
     List<TenderBean> tenders = new ArrayList<>();
 		
 		try(Connection conn = DBUtil.provideConnection()){
@@ -193,9 +193,8 @@ public class AdministratorDaoImp implements AdministratorDao{
 				String t = rs.getString("ttype");
 				int p = rs.getInt("tprice");
 				String l = rs.getString("tlocation");
-				Date d = rs.getDate("tdeadline");
 				
-				tenders.add(new TenderBean(i,n,t,p,l,d));
+				tenders.add(new TenderBean(i,n,t,p,l));
 			}
 			
 			if(tenders.size()==0) {
@@ -235,10 +234,9 @@ public class AdministratorDaoImp implements AdministratorDao{
 				String vi = rs.getString("vid");
 				String ti = rs.getString("tid");
 			    int p = rs.getInt("bprice");
-				Date d = rs.getDate("bdeadline");
 				String s = rs.getString("bstatus");
 				
-				bidders.add(new BidderBean(i,vi,ti,p,d,s));
+				bidders.add(new BidderBean(i,vi,ti,p,s));
 			}
 			
 			if(bidders.size()==0) {
@@ -252,6 +250,38 @@ public class AdministratorDaoImp implements AdministratorDao{
 		}
 		
 		return bidders;
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public String assignTenderToVendor(String vid, String tid) throws BidderException {
+		String result = "Assignation failed!";
+		
+		try(Connection conn = DBUtil.provideConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("update bidder set bstatus = 'selected' where vid=? AND tid=?");
+			
+			ps.setString(1, vid);
+			ps.setString(2, tid);
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				result = "Tender assigned successfully...";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new BidderException(e.getMessage());
+		}
+		
+		return result;
 	}
 	
 }

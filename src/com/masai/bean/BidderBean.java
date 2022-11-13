@@ -8,15 +8,16 @@ public class BidderBean {
 	private String vid;
 	private String tid;
 	private int price;
-	private Date deadline;
 	private String status;
-	public BidderBean(String id, String vid, String tid, int price, Date deadline, String status) {
+	public BidderBean() {
+		super();
+	}
+	public BidderBean(String id, String vid, String tid, int price, String status) {
 		super();
 		this.id = id;
 		this.vid = vid;
 		this.tid = tid;
 		this.price = price;
-		this.deadline = deadline;
 		this.status = status;
 	}
 	public String getId() {
@@ -43,12 +44,6 @@ public class BidderBean {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public Date getDeadline() {
-		return deadline;
-	}
-	public void setDeadline(Date deadline) {
-		this.deadline = deadline;
-	}
 	public String getStatus() {
 		return status;
 	}
@@ -57,15 +52,14 @@ public class BidderBean {
 	}
 	@Override
 	public String toString() {
-		return "BidderBean [id=" + id + ", vid=" + vid + ", tid=" + tid + ", price=" + price + ", deadline=" + deadline
-				+ ", status=" + status + ", getId()=" + getId() + ", getVid()=" + getVid() + ", getTid()=" + getTid()
-				+ ", getPrice()=" + getPrice() + ", getDeadline()=" + getDeadline() + ", getStatus()=" + getStatus()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+		return "BidderBean [id=" + id + ", vid=" + vid + ", tid=" + tid + ", price=" + price + ", status=" + status
+				+ ", getId()=" + getId() + ", getVid()=" + getVid() + ", getTid()=" + getTid() + ", getPrice()="
+				+ getPrice() + ", getStatus()=" + getStatus() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(deadline, id, price, status, tid, vid);
+		return Objects.hash(id, price, status, tid, vid);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -76,10 +70,9 @@ public class BidderBean {
 		if (getClass() != obj.getClass())
 			return false;
 		BidderBean other = (BidderBean) obj;
-		return Objects.equals(deadline, other.deadline) && Objects.equals(id, other.id) && price == other.price
-				&& Objects.equals(status, other.status) && Objects.equals(tid, other.tid)
-				&& Objects.equals(vid, other.vid);
+		return Objects.equals(id, other.id) && price == other.price && Objects.equals(status, other.status)
+				&& Objects.equals(tid, other.tid) && Objects.equals(vid, other.vid);
 	}
 	
-	
+
 }	
