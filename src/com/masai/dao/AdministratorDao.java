@@ -19,9 +19,11 @@ public interface AdministratorDao {
 
     public List<VendorBean> viewAllVendor() throws VendorException;
     
-    public String createTender(String id, String name, String type, int price, String location, Date deadline) throws TenderException;
+    public String createTender(String id, String name, String type, int price, String location) throws TenderException;
 
     public List<TenderBean> viewAllTender() throws TenderException;
     
     public List<BidderBean> viewAllBidsOfTender(String tid) throws BidderException;
+    
+    public String assignTenderToVendor(String vid, String tid) throws BidderException;
 }
