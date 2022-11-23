@@ -230,7 +230,7 @@ public class AdministratorDaoImp implements AdministratorDao{
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				String i = rs.getString("bid");
+				String i = rs.getString("bno");
 				String vi = rs.getString("vid");
 				String ti = rs.getString("tid");
 			    int p = rs.getInt("bprice");
@@ -261,7 +261,7 @@ public class AdministratorDaoImp implements AdministratorDao{
 
 	@Override
 	public String assignTenderToVendor(String vid, String tid) throws BidderException {
-		String result = "Assignation failed!";
+		String result = "Invalid details provided!";
 		
 		try(Connection conn = DBUtil.provideConnection()){
 			

@@ -9,7 +9,7 @@ public class Main {
 	public static void administratorMain() {
 		Scanner sc = new Scanner(System.in);
 		AdministratorUsecase au = new AdministratorUsecase();
-		System.out.println("Please enter a valid input to do the following operations:-");
+		System.out.println("--------------------------------");
 		System.out.println("1. Register a new vendor");
 		System.out.println("2. View all the vendors");
 		System.out.println("3. Create a new tender");
@@ -49,9 +49,11 @@ public class Main {
 		Main.administratorMain();
 		break;
 		
-		case 99 : System.out.println("Exit successfully..."); return;
+		case 99 : System.out.println("Thanks for visiting TENDY,");
+                  System.out.println("Have a great day.....!!"); return;
 		
 		default : System.out.println("Please enter a valid input!");
+		Main.administratorMain();
 		}
 	}
 	
@@ -60,7 +62,7 @@ public class Main {
 	public static void vendorMain() {
 		Scanner sc = new Scanner(System.in);
 		VendorUsecase vu = new VendorUsecase();
-		System.out.println("Please enter a valid input to do the following operations:-");
+		System.out.println("--------------------------------");
 		System.out.println("1. View all the current tenders");
 		System.out.println("2. Place a bid against a tender");
 		System.out.println("3. View status of bid");
@@ -90,7 +92,8 @@ public class Main {
 		Main.vendorMain();
 		break;
 		
-		case 99 : System.out.println("Exit successfully..."); return;
+		case 99 : System.out.println("Thanks for visiting TENDY,");
+                  System.out.println("Have a great day.....!!"); return;
 		
 		default : System.out.println("Please enter a valid input");
 		}
@@ -98,14 +101,14 @@ public class Main {
 	}
 	
 	
-	
-	
+
 	public static void administratorAuthentication() {
 		AdministratorUsecase au = new AdministratorUsecase();
 		if(au.LogInAdmin()) {
 			administratorMain();
 		}
 	}
+	
 	
 	
 	public static void vendorAuthentication() {
@@ -116,12 +119,14 @@ public class Main {
 	}
 	
 	
-	public static void main(String[] args) {
+	
+	public static void tendy() {
 		Scanner sc = new Scanner(System.in);
 		AdministratorUsecase au = new AdministratorUsecase();
 		VendorUsecase vu = new VendorUsecase();
 		System.out.println("WELCOME TO THE TENDY APPLICATION");
-		System.out.println("----------------------------");
+		System.out.println("--------------------------------");
+		System.out.println("--------------------------------");
 		System.out.println("Please enter a valid input to do the following operations:-");
 		System.out.println("1. Administrator");
 		System.out.println("2. Vendor");
@@ -134,7 +139,7 @@ public class Main {
 			System.out.println("Please enter your admin id and password to login:-");
 			if(au.LogInAdmin()) {
 				administratorMain();
-			}else {
+			}while(!au.LogInAdmin()) {
 				administratorAuthentication();
 			}
 	    break;
@@ -150,10 +155,16 @@ public class Main {
 			}
 		break;
 		
-		case 99 : System.out.println("Exit successfully..."); return;
+		case 99 : System.out.println("Thanks for visiting TENDY,");
+		          System.out.println("Have a great day.....!!");return;
 		
 		default : System.out.println("Please enter a valid input");
 		}
-
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		tendy();
 	}
 }
