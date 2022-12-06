@@ -12,9 +12,9 @@ public class AdministratorUsecase {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("--------------------------------");
 		System.out.println("Enter the ID here:-");
-		String id = sc.next();
+		String id = sc.nextLine();
 		System.out.println("Enter the Password here:-");
-		String password = sc.next();
+		String password = sc.nextLine();
 		
 		AdministratorDao ad = new AdministratorDaoImp(); 
 		try {
@@ -38,9 +38,9 @@ public class AdministratorUsecase {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("--------------------------------");
 		System.out.println("Enter a id here (format : VRXXXX):-");
-		String id = sc.next();
+		String id = sc.nextLine();
 		System.out.println("Enter a password here:-");
-		String password = sc.next();
+		String password = sc.nextLine();
 		System.out.println("Enter a name here:-");
 		String name = sc.nextLine();
 		System.out.println("Enter a email here:-");
@@ -96,6 +96,7 @@ public class AdministratorUsecase {
 		String type = sc.nextLine();
 		System.out.println("Enter a price here:-");
 		int price = sc.nextInt();
+		sc.nextLine();
 		System.out.println("Enter a location here:-");
 		String location = sc.nextLine();
 		
@@ -144,7 +145,7 @@ public class AdministratorUsecase {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("--------------------------------");
 		System.out.println("Enter the tender ID here (format : TRXXXX):-");
-		String tid = sc.next();
+		String tid = sc.nextLine();
 		AdministratorDao dao = new AdministratorDaoImp();
 		try {
 			List<BidderBean> bidders = dao.viewAllBidsOfTender(tid);
@@ -168,9 +169,9 @@ public class AdministratorUsecase {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("--------------------------------");
 		System.out.println("Enter the Vendor ID here (format : VRXXXX):-");
-		String vid = sc.next();
+		String vid = sc.nextLine();
 		System.out.println("Enter the Tender ID here (format : TRXXXX):-");
-		String tid = sc.next();
+		String tid = sc.nextLine();
 		
 		AdministratorDao dao = new AdministratorDaoImp();
 		

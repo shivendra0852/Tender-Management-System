@@ -12,9 +12,9 @@ public class VendorUsecase {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("--------------------------------");
 		System.out.println("Enter the ID here:-");
-		String id = sc.next();
+		String id = sc.nextLine();
 		System.out.println("Enter the Password here:-");
-		String password = sc.next();
+		String password = sc.nextLine();
 		
 		VendorDao dao = new VendorDaoImp();
 		
@@ -56,9 +56,10 @@ public class VendorUsecase {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("--------------------------------");
 		System.out.println("Enter the Tender ID (format : TRXXXX) here:-");
-		String tid = sc.next();
+		String tid = sc.nextLine();
 		System.out.println("Enter the Bidding price here:-");
 		int bprice = sc.nextInt();
+		sc.nextLine();
 		
 		VendorDao dao = new VendorDaoImp();
 		
@@ -81,7 +82,7 @@ public class VendorUsecase {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("--------------------------------");
 		System.out.println("Enter the Bid S. No. here:-");
-		String id = sc.next();
+		String id = sc.nextLine();
 		
 		VendorDao dao = new VendorDaoImp();
 		try {

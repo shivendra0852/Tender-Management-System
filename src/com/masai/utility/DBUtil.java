@@ -36,7 +36,7 @@ public class DBUtil {
             e.printStackTrace();
         }
         
-//        String url = "jdbc:mysql://localhost:3306/shivendradb";
+        
         
         try {
             conn = DriverManager.getConnection(url, username, password);
