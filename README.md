@@ -1,2 +1,2 @@
 # Tender Management System - (TENDY)
-This project is developed by me with the help of the Core Java, DBMS, JDBC, MySQL. The main objective of this application is to manage the deal between vendors and the company.
+A powerful and efficient solution to manage the tenders built using Core Java, DBMS, JDBC and MySQL. This individual project streamlines the tender process, by automating the entire lifecycle of tenders, right from the submission of the tender document to the final evaluation of the tenders. The system includes features such as document management, bid evaluation, and reporting. This project demonstrates my ability to design and implement complex systems using Java and database technologies.
