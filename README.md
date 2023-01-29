@@ -18,6 +18,17 @@ A powerful and efficient solution to manage the tenders built using Core Java, D
 - MySQL
 - JDBC
 
+## ER- Diagram
+<p>
+        <img
+        align="center"
+        src="https://github.com/shivendra0852/Tender-Management-System/blob/main/media/TendyERDiagram.png"
+        alt="Coding"
+        width="700"
+        style="display: block"/>
+    </p>
+    <br>
+
 ## Modules
 - Admin Module
 - Vendor Module
